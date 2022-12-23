@@ -1,0 +1,40 @@
+export const BasketItem = (props) => {
+  const {
+    id,
+    name,
+    price,
+    quantity,
+    removeProduct = Function.prototype,
+    decQuantity = Function.prototype,
+    incQuantity = Function.prototype,
+  } = props;
+
+  return (
+    <li className='collection-item'>
+      {name} x{' '}
+      <button
+        className='btn-item'
+        onClick={() => decQuantity(id)}
+      >
+        -
+      </button>{' '}
+      {quantity}{' '}
+      <button
+        className='btn-item'
+        onClick={() => incQuantity(id)}
+      >
+        +
+      </button>{' '}
+      = {price * quantity} руб.
+      <span className='secondary-content'>
+        <i
+          onClick={() => removeProduct(id)}
+          style={{ cursor: 'pointer' }}
+          className='material-icons'
+        >
+          close
+        </i>
+      </span>
+    </li>
+  );
+};
