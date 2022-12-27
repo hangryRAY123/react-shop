@@ -1,8 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
+import { ShopContext } from '../context';
 
-export const Alert = (props) => {
-  const { name = '', closeAlertName = Function.prototype } =
-    props;
+export const Alert = () => {
+  const {
+    alertName: name = '',
+    closeAlertName = Function.prototype,
+  } = useContext(ShopContext);
 
   useEffect(() => {
     const timerId = setTimeout(closeAlertName, 3000);
@@ -10,7 +13,7 @@ export const Alert = (props) => {
     return () => {
       clearTimeout(timerId);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
 
   return (
